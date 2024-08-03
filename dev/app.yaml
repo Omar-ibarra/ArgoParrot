@@ -46,7 +46,7 @@ spec:
           value: "5432"
         - name: APP_VERSION
           value: 0.1.0
-        image: 087445709447.dkr.ecr.us-east-1.amazonaws.com/parrotdev:2
+        image: 087445709447.dkr.ecr.us-east-1.amazonaws.com/parrotdev:3
         imagePullPolicy: IfNotPresent
         name: parrotdev
         ports:
