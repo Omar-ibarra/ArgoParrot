@@ -4,7 +4,6 @@ metadata:
   annotations:
     service.beta.kubernetes.io/aws-load-balancer-type: nlb
   name: parrotdev-svc
-  namespace: prueba
 spec:
   ports:
   - port: 8000
@@ -18,7 +17,6 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: parrotdev
-  namespace: prueba
 spec:
   replicas: 1
   selector:
@@ -48,7 +46,7 @@ spec:
           value: "5432"
         - name: APP_VERSION
           value: 0.1.0
-        image: 087445709447.dkr.ecr.us-east-1.amazonaws.com/parrotdev:1
+        image: 087445709447.dkr.ecr.us-east-1.amazonaws.com/parrotdev:2
         imagePullPolicy: IfNotPresent
         name: parrotdev
         ports:
