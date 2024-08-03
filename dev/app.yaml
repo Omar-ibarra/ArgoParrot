@@ -46,7 +46,7 @@ spec:
           value: "5432"
         - name: APP_VERSION
           value: 0.1.0
-        image: 087445709447.dkr.ecr.us-east-1.amazonaws.com/parrotdev:6
+        image: 087445709447.dkr.ecr.us-east-1.amazonaws.com/parrotdev:7
         imagePullPolicy: IfNotPresent
         name: parrotdev
         ports:
@@ -58,3 +58,22 @@ spec:
           requests:
             cpu: 200m
             memory: 64Mi
+---
+apiVersion: autoscaling/v2
+kind: HorizontalPodAutoscaler
+metadata:
+  name: hpa-parrot
+spec:
+  maxReplicas: 10
+  metrics:
+  - resource:
+      name: cpu
+      target:
+        averageUtilization: 25
+        type: Utilization
+    type: Resource
+  minReplicas: 1
+  scaleTargetRef:
+    apiVersion: apps/v1
+    kind: Deployment
+    name: parrotdev
